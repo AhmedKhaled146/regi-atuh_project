@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container" style="margin: 100px">
+    <p class="text-secondary mb-9 ">Logged out!</p>
+    <a href="{% url 'accounts:login'%}">Click here to login again.</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title> {{title}} </title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+
+    <link href="{% static 'img/favicon.png' %}" rel="icon">
+    <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/aos/aos.css" rel="stylesheet' %}">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/owl.theme.default.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+            <h1 class="logo me-auto"><a href="{% url 'accounts:index' %}">REGI</a></h1>
+            <nav id="navbar" class="navbar order-last order-lg-0 w-100">
+                <ul class="me-auto">
+                    <li><a class="active" href="{% url 'accounts:index' %}">Home</a></li>
+                </ul>
+                <ul class="ms-auto">
+                    <div class="none">
+                        <li><a class="active" href="{% url 'accounts:index' %}">Home</a></li>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'accounts:profile'  %}">profile <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                                    <path
+                                        d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                </svg></a></li>
+                        <li>
+                        <div class="dropdown">
+                            <a class="  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Log out <svg xmlns="http://www.w3.org/2000/svg"
+                                            width="20" height="20" fill="currentColor" class="bi bi-box-arrow-left"
+                                            viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+                                            <path fill-rule="evenodd"
+                                                d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+                                        </svg></a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <li><a href="{% url 'accounts:login' %}">Login <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                                <path fill-rule="evenodd"
+                                    d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                            </svg></a></li>
+                        <li><a href="{% url 'accounts:register' %}">Register</a></li>
+
+                    {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+{% block content %}
+
+
+
+{% endblock content %}
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+    <script src="{% static 'vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+    <script src="{% static 'js/modernizr-3.5.0.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

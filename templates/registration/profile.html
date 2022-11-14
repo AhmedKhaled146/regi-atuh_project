@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main id="main" class="ProfileMain ">
+  <section class="section profile">
+    <div class="row justify-content-center">
+      <div class="col-xl-4 col-lg-4 col-md-5 col-sm-10 mb-2">
+        <div class="card UserCard">
+          <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+            <img src="{{profile.image}}" alt="Profile" class="rounded-circle">
+            <h2>{{profile}}</h2>
+            <h3>{{profile.job}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-7 col-lg-7 col-md-7 col-sm-10 ">
+        {% comment %} <!--------Profile Information--------------------------------------> {% endcomment %}
+        <div class="card ProfileInformation ">
+          <div class="card-body pt-3">
+            {% comment %} <!-- Bordered Tabs --> {% endcomment %}
+            <ul class="nav nav-tabs nav-tabs-bordered">
+              <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab"
+                  data-bs-target="#profile-overview">Overview</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+              </li>
+            </ul>
+            <div class="tab-content pt-2">
+              <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                <h5 class="card-title">Profile Details</h5>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                  <div class="col-lg-9 col-md-8">{{profile.full_name}}  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Email</div>
+                  <div class="col-lg-9 col-md-8">{{profile.user.email}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Phone</div>
+                  <div class="col-lg-9 col-md-8">+{{profile.phone_number}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Address</div>
+                  <div class="col-lg-9 col-md-8">{{profile.address}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Job </div>
+                  <div class="col-lg-9 col-md-8">{{profile.job}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Year of Experinse</div>
+                  <div class="col-lg-9 col-md-8">{{profile.year_of_experinse}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">about</div>
+                  <div class="col-lg-9 col-md-8">{{profile.about}}</div>
+                </div>
+              </div>
+              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                {% comment %} <!-- Profile Edit Form --> {% endcomment %}
+                <form method="POST">
+                  {% csrf_token %}
+                  <div class="row mb-3">
+                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                    <div class="col-md-8 col-lg-9">
+                      <img src="{{profile.image}}" alt="Profile">
+                      <div class="pt-2">
+                        <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i
+                            class="bi bi-upload"></i></a>
+                        <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                            class="bi bi-trash"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{profile_form.full_name}}
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                    <div class="col-md-8 col-lg-9">
+                      {{user_form.email}}
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{profile_form.phone_number}}
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{profile_form.address}}
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">about</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{profile_form.about}}
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">job</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{profile_form.job}}
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Year of Experinse</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{profile_form.year_of_experinse}}
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="old_password" class="col-md-4 col-lg-3 col-form-label">Old password</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="old_password" type="password" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="new_password" class="col-md-4 col-lg-3 col-form-label">New password</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="new_password" type="password" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary" name="EditStudent">Save Changes</button>
+                  </div>
+                </form>
+                {% comment %} <!-- End Profile Edit Form --> {% endcomment %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+  </section>
+
+</main><!-- End #main -->
+
+{% endblock content %}
